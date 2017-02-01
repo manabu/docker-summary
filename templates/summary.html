@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+<title>Get Summary</title>
+</head>
+<body>
+  {% if target_url and target_url!="" %}
+    <a href="{{ target_url }}" >{{ target_url }}</a>
+  {% else %}
+    URL is empty
+  {% endif %}
+
+  <pre>
+    {% for line in lines %}
+      {{ line|safe }}
+    {% endfor %}
+</body>
