@@ -71,9 +71,17 @@ def summary():
 
 
 
-@app.route("/")
+@app.route("/", methods=['POST', 'GET'])
 def index():
-    return render_template('index.html')
+    lines=[]
+    target_url=""
+    if request.method == 'POST':
+        target_url=request.form['target_url']
+        summarydata = create_summary(target_url)
+        print(dir(summarydata))
+        if 'summary' in summarydata:
+            lines=summarydata['summary']
+    return render_template('index.html',lines=lines,target_url=target_url)
 
 if __name__ == "__main__":
    app.run(host='0.0.0.0')

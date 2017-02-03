@@ -2,13 +2,28 @@
 <html>
 <head>
 <title>Get Summary</title>
+<script>
+function setFocus(){
+    document.getElementById("target_url_input").focus();
+}
+</script>
 </head>
-<body>
-  <form action="/summary" method="POST">
-    URL: <input type="text" name="target_url">
+<body onload='setFocus();'>
+  <form action="/" method="POST">
+    URL: <input id="target_url_input" type="text" name="target_url">
     <input type="submit" value="Summarize">
   </form>
   <p>
   TODO: 1. choose summary algorithm.<br>
   TODO: 2. choose summarizer mainly for English<br>
+  <hr>
+  {% if target_url and target_url!="" %}
+    <a href="{{ target_url }}" >{{ target_url }}</a>
+    <pre>
+      {% for line in lines %}
+        {{ line|safe }}
+      {% endfor %}
+    </pre>
+  {% endif %}
+
 </body>
